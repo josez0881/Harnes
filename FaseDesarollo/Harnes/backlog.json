@@ -1,0 +1,16 @@
+{
+  "_nota": "Una unidad a la vez (máximo una in_progress), ids únicos. Sin script de validación: lo comprueban el líder al arrancar y el revisor. Empieza vacío: no inventes trabajo.",
+  "_adaptar": "[POR ADAPTAR: si el proyecto ya tiene tracker o documentación de historias, referéncialo por su ID y documenta en docs/ cómo leerlo; si no, deja units vacío]",
+  "estados_validos": ["pending", "in_progress", "done", "blocked"],
+  "verificacion_validos": ["no_ejecutada", "dirigida_ok", "completa_ok", "fallida"],
+  "unit_ejemplo": {
+    "id": "<id>",
+    "title": "<título>",
+    "description": "<qué y por qué>",
+    "acceptance": ["<criterio verificable>"],
+    "status": "pending",
+    "verificacion": "no_ejecutada",
+    "notes": ""
+  },
+  "units": []
+}
