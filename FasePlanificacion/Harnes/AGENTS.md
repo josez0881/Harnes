@@ -69,7 +69,7 @@ Cada fase termina con aprobación del usuario antes de pasar a la siguiente.
 
 ### Entrega al harness de implementación
 - Los repositorios de planificación e implementación son independientes. El único canal entre ellos es un archivo de entrega que tú copias.
-- Una entrega (`entregas/ENT-NNN-EPIC-NNN-<slug>.md`) es un **paquete autocontenido**: orden de implementación, contexto compartido (CAP, ROL, REG, INT referenciados), el texto de cada historia, instrucciones para el implementador y el formato de retorno. El implementador no necesita acceder a este repositorio.
+- Una entrega (`entregas/ENT-NNN-EPIC-NNN-<slug>.md`) es un **paquete autocontenido**: orden de implementación, contexto compartido (CAP, ROL, REG, INT referenciados), contexto adicional (hechos confirmados tomados de épicas u `OBS` resueltas), anexos (CSV y catálogos referenciados), el texto de cada historia, instrucciones para el implementador y el formato de retorno. El implementador no necesita acceder a este repositorio.
 - Se genera cuando una épica (o una selección de historias) está lista: todas las historias incluidas en `Lista para desarrollo`, sin `OBS` bloqueantes abiertas y con tu confirmación explícita.
 - Qué le das al harness de implementación: el archivo de entrega. Instrucción sugerida: «Implementa las historias de este documento en el orden indicado».
 - Es una **copia generada** de `docs/`: no se edita a mano. Si algo cambia, se regenera como nueva entrega y la anterior pasa a `Reemplazada`.

@@ -3,7 +3,8 @@
 > Copia la plantilla que corresponda y rellénala. Reglas comunes:
 > - Ningún marcador `<...>` puede quedar sin resolver: se reemplaza por contenido, por `Pendiente` o se borra la fila/sección si no aplica.
 > - Texto sin etiqueta = confirmado y con fuente. Lo demás lleva `Pendiente`, `[Inferencia]` o `[No verificado]`.
-> - Rutas siempre desde la raíz del repositorio (`docs/...`).
+> - **Enlaces entre archivos de `docs/`:** son relativos al archivo que los contiene (como los de los ejemplos de esta plantilla) y deben resolver. Antes de dar un enlace por bueno, comprueba que el destino existe y que la ancla (`#...`) coincide con un encabezado real. No conviertas a rutas desde la raíz enlaces relativos que ya funcionan.
+> - **Rutas escritas en texto** (no como enlace), en `OBS`, informes y mensajes: desde la raíz del repositorio (`docs/...`).
 > - `NNN` = número del ID con tres dígitos (`US-003` → `01-US-003-<slug>.md`). `<slug>` = minúsculas, sin tildes, con guiones.
 
 ---
@@ -123,7 +124,9 @@ Como **[ROL-XXX · <rol>]**, quiero **<acción>**, para **<beneficio>**.
 - Reglas globales aplicables: [REG-XXX](../../04_reglas_globales.md)
 - Integraciones: [INT-XXX](../../05_integraciones.md)
 - Historias previas de las que depende: [US-XXX](01-US-XXX-<slug>.md)
+- Otros documentos que contienen requisitos confirmados que esta historia usa (épica, `OBS` resuelta, entrevista, datos tabulares/CSV): <enlace + qué hecho concreto se toma de allí>
 > Si un documento no es necesario para esta historia, no lo enlaces. Si lo es y falta, la historia no está lista.
+> Si un hecho confirmado vive solo en un documento que no es CAP/ROL/REG/INT/US (p. ej. una épica o una `OBS`), indícalo en la última fila: al generar la entrega ese hecho se copia al paquete (ver Contexto adicional y Anexos).
 
 ## Alcance
 - **Incluye:** <...>
@@ -283,6 +286,7 @@ Permisos, auditoría, volumen, rendimiento percibido, trazabilidad, retención d
 | Generada el | <AAAA-MM-DD> |
 | Estado | Generada / Retornada / Reemplazada |
 | Reemplaza a | <ENT-NNN o —> |
+| Adjuntos | <archivos que el usuario debe entregar junto con este paquete, o «Ninguno»> |
 | Revisión de la entrega | <fecha> · ENTREGA LISTA / CAMBIOS REQUERIDOS |
 
 ## Instrucciones para el implementador
@@ -308,9 +312,20 @@ Permisos, auditoría, volumen, rendimiento percibido, trazabilidad, retención d
 ### REG-NNN — <nombre>
 ### INT-NNN — <nombre>
 
+## Contexto adicional
+> Hechos confirmados que las historias usan y que en `docs/` viven fuera de CAP/ROL/REG/INT/US (épicas, `OBS` resueltas, entrevistas). Copia fiel de la parte confirmada, cada ítem con su fuente (`docs/...`, sección) y el `US-NNN` que lo usa. No incluyas deliberaciones, `OBS` abiertas ni historial de revisiones. Si no aplica: «Ninguno».
+### CTX-01 — <tema> (fuente: <ruta y sección>; usado por: US-NNN)
+
+## Anexos
+> Archivos de datos que las historias referencian (CSV, tablas de catálogo, ejemplos). Cada anexo con identificador, fuente y las historias que lo usan. Si es pequeño, se incluye completo en un bloque de código; si es grande, se indica y el usuario lo adjunta junto con la entrega (campo *Adjuntos*). Si no aplica: «Ninguno».
+### ANX-01 — <nombre> (fuente: <ruta>; usado por: US-NNN)
+```text
+<contenido o «Adjunto: <nombre de archivo>»>
+```
+
 ## Historias
 ### US-NNN — <título>
-<contenido fiel de la historia, sin *Definition of Ready* ni *Registro de cambios*; los enlaces a `docs/` se sustituyen por «ver Contexto compartido: REG-NNN»>
+<contenido fiel de la historia, sin *Definition of Ready* ni *Registro de cambios*; los enlaces a `docs/` se sustituyen por una referencia interna: «ver Contexto compartido: REG-NNN», «ver Contexto adicional: CTX-01» o «ver Anexo: ANX-01»>
 
 ## Cambios respecto a la entrega anterior
 <solo si reemplaza a otra: qué historias cambiaron y por qué>

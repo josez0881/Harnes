@@ -26,7 +26,7 @@ Uno o más IDs de historia (`US-NNN`), una épica completa o una entrega (`ENT-N
 | # | Criterio | Cómo se comprueba |
 |---|---|---|
 | D1 | Estructura completa | Todas las secciones de la plantilla existen; no quedan `<...>` ni campos vacíos |
-| D2 | Trazabilidad | La épica y la capacidad existen; la historia aparece en la tabla de su épica; el rol existe como `ROL-`; cada `REG/INT/US` enlazado existe; los IDs no están duplicados en `docs/` |
+| D2 | Trazabilidad | La épica y la capacidad existen; la historia aparece en la tabla de su épica; el rol existe como `ROL-`; cada `REG/INT/US` enlazado existe; los enlaces relativos y sus anclas resuelven; los IDs no están duplicados en `docs/` |
 | D3 | Criterios verificables | Cada `CA` es Dado/Cuando/Entonces con datos concretos y resultado observable; sin adjetivos vagos; hay camino feliz, error y permisos si hay rol restringido |
 | D4 | Sin pendientes bloqueantes | Ningún `Pendiente`/`[No verificado]` en campos obligatorios; ninguna `[Inferencia]` sin resolver que cambie el comportamiento; ninguna `OBS` abierta que bloquee esta historia |
 | D5 | Negocio, no solución | No hay tecnología, tablas ni endpoints impuestos sin una restricción confirmada y con fuente |
@@ -41,7 +41,7 @@ Se hace sobre `entregas/ENT-NNN-*.md` contrastándola con `docs/`.
 | # | Criterio | Cómo se comprueba |
 |---|---|---|
 | E1 | Fidelidad | Cada historia incluida está en `Lista para desarrollo` y su texto coincide con el de `docs/` (salvo las secciones internas retiradas y los enlaces resueltos) |
-| E2 | Autocontenida | Todo ID referenciado (`CAP/ROL/REG/INT/US`) está resuelto en el paquete; no quedan enlaces relativos a `docs/` ni rutas externas |
+| E2 | Autocontenida | Todo ID referenciado (`CAP/ROL/REG/INT/US`) está resuelto en el paquete; los hechos que las historias toman de otros documentos están en *Contexto adicional* y los datos referenciados en *Anexos* (o declarados como *Adjuntos*); no quedan enlaces relativos a `docs/` ni rutas externas; no hay en el paquete deliberaciones ni `OBS` abiertas |
 | E3 | Orden | Respeta dependencias, sin ciclos; cada fila tiene motivo; coincide con *Orden de implementación* de la épica |
 | E4 | Prerrequisitos | Las dependencias fuera del paquete están listadas o son «Ninguno» con respaldo |
 | E5 | Contrato | Incluye instrucciones para el implementador y el formato de retorno completo |

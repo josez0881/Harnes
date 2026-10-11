@@ -68,7 +68,7 @@ progress/
 ```
 - Los prefijos `00/01/98/99` agrupan por tipo de artefacto, no indican orden. Todas las historias usan `01-`.
 - `NNN` es el número del ID con tres dígitos: `US-003` → `01-US-003-<slug>.md`; `EPIC-001` → `EPIC-001-<slug>/00-EPIC-001.md`.
-- Todas las rutas se escriben desde la raíz del repositorio.
+- Enlaces entre archivos de `docs/`: relativos al archivo que los contiene, como en las plantillas; verifica que el destino y la ancla existan. No los conviertas a rutas desde la raíz si ya funcionan. Las rutas escritas en texto (en `OBS`, informes y mensajes) van desde la raíz del repositorio.
 - Los números `01`–`03` de la raíz no se usan; no renumeres `04` y `05` (rompería enlaces).
 
 ## 5. IDs
@@ -109,7 +109,7 @@ Si cambias el estado de una historia, actualiza también su fila en la tabla de 
 ## 7. Cómo se escribe una historia que se pueda implementar
 
 1. **Una historia = un archivo = una capacidad entregable.** Señal de que hay que dividirla: más de ~8 criterios (umbral orientativo), varios roles con flujos distintos o más de un módulo. Propón la división como observación.
-2. **Contexto heredado explícito.** Enlaza solo los `CAP/REG/INT/US` que el desarrollo necesita leer. Así el implementador no tiene que recontextualizar el proyecto. Estos enlaces se resuelven al generar la entrega, porque el implementador no tiene acceso a este repositorio.
+2. **Contexto heredado explícito.** Enlaza solo los `CAP/REG/INT/US` que el desarrollo necesita leer y, aparte, los demás documentos de los que se toma un requisito confirmado (épica, `OBS` resuelta, entrevista, CSV), diciendo qué hecho concreto se toma de cada uno. Así el implementador no tiene que recontextualizar el proyecto. Estos enlaces se resuelven al generar la entrega, porque el implementador no tiene acceso a este repositorio.
 3. **Criterios verificables** (lo único contra lo que se valida):
    - Un resultado observable por criterio, con datos concretos.
    - Sin adjetivos vagos ("rápido", "amigable", "adecuado", "correcto").
@@ -174,6 +174,8 @@ Si una historia depende de otra épica que aún no está implementada, anótalo 
 **Generar la entrega** `entregas/ENT-NNN-EPIC-NNN-<slug>.md` con la plantilla (plantillas §11):
 - Es una **copia fiel** de `docs/`: no reformules, no resumas ni completes lo que falte. Quita solo las secciones internas (*Definition of Ready*, *Registro de cambios*) y sustituye cada enlace relativo a `docs/` por una referencia a un ID dentro del paquete. No debe quedar ningún enlace que apunte fuera del archivo.
 - El *Contexto compartido* incluye, sin duplicados, solo los `CAP/ROL/REG/INT` que las historias incluidas referencian, con su texto completo.
+- El *Contexto adicional* recoge, como copia fiel y con su fuente, los hechos confirmados que las historias toman de épicas, `OBS` resueltas o entrevistas. Excluye deliberaciones, `OBS` abiertas e historial. Si una historia necesita un hecho que está solo en una `OBS` abierta o sin confirmar, no lo incluyas ni lo completes: la historia no cumple la precondición de la entrega; regístralo como `OBS` y detente.
+- Los *Anexos* incluyen los archivos de datos (CSV, catálogos) que las historias referencian. Si son demasiado grandes para el paquete, indícalo en el campo *Adjuntos* de la entrega y pide al usuario que los adjunte junto con ella.
 - Marca las historias incluidas como `Entregada` (y su fila en la tabla de la épica), registra la entrega en la sección *Entregas* de la épica y deja la entrega en estado `Generada`.
 - Si regeneras por un cambio, crea una `ENT-NNN` nueva, marca la anterior `Reemplazada` y completa *Cambios respecto a la entrega anterior*.
 - Pide al Revisor que valide la entrega, en una sesión nueva, antes de que el usuario se la dé al implementador.
