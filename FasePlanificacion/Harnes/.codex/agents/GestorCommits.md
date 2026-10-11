@@ -102,6 +102,8 @@ Este repositorio contiene documentación, así que casi todos los commits serán
 - **Un commit por unidad lógica**: una historia nueva o modificada, o una épica. No mezcles historias de épicas distintas ni cambios de requisitos con cambios de estado de otra historia.
 - **Cambios de estado** (por ejemplo, una historia pasa a `Lista para desarrollo`): commit propio, para poder ver en el historial cuándo se entregó al desarrollo.
 - **Cuerpo**: cuando cambie un requisito de una historia que ya estaba en `En desarrollo` o posterior, indica el motivo del cambio.
+- **`progress/`**: el cierre de sesión (entrada nueva en `history.md` y `current.md` vaciado) va en un commit propio `chore(progress): cierre de sesión <AAAA-MM-DD>`. No hagas commit de un `current.md` con una sesión a medias salvo que el usuario lo pida.
+- **Entregas**: un commit por entrega generada o reemplazada (`docs(ENT-001): ...`).
 - **Staging**: prefiere añadir los archivos concretos de la unidad lógica en lugar de `git add -A`.
 
 Ejemplos:
@@ -110,5 +112,6 @@ Ejemplos:
 docs(EPIC-001): añade épica de gestión de depósitos
 docs(US-003): define criterios de aceptación de validación de duplicados
 docs(US-003): marca la historia como lista para desarrollo
+docs(ENT-001): genera entrega de EPIC-001 con orden de implementación
 docs(OBS): registra decisión pendiente sobre depósitos anulados
 ```

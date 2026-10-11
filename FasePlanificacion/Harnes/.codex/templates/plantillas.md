@@ -68,7 +68,7 @@ Sistemas externos con los que el sistema se relaciona. Transversal a las épicas
 # EPIC-NNN — <nombre>
 
 - **Capacidad relacionada:** [CAP-XXX](../../00_capabilities.md)
-- **Estado:** Borrador / En refinamiento / En desarrollo / Completada / Descartada
+- **Estado:** Borrador / En refinamiento / Lista para desarrollo / En desarrollo / Completada / Descartada
 - **Prioridad:** Alta / Media / Baja
 
 ## Objetivo
@@ -81,6 +81,17 @@ Sistemas externos con los que el sistema se relaciona. Transversal a las épicas
 | ID | Historia (resumen) | Prioridad | Estado | Depende de | Archivo |
 |---|---|---|---|---|---|
 | US-001 | <...> | Alta | Borrador | — | [01-US-001-<slug>.md](01-US-001-<slug>.md) |
+
+## Orden de implementación
+> Se completa en la Fase E, cuando la épica se confirma como lista. Lo propone el Documentador y lo aprueba el usuario.
+| Orden | Historia | Depende de | Motivo del lugar |
+|---|---|---|---|
+| 1 | US-001 | — | <...> |
+
+## Entregas
+| ID | Alcance | Fecha | Estado |
+|---|---|---|---|
+| [ENT-001](../../../entregas/ENT-001-EPIC-NNN-<slug>.md) | Épica completa / selección | <AAAA-MM-DD> | Generada / Retornada / Reemplazada |
 
 ## Dependencias o restricciones
 ## Notas
@@ -95,7 +106,7 @@ Sistemas externos con los que el sistema se relaciona. Transversal a las épicas
 |---|---|
 | Épica | [EPIC-NNN](00-EPIC-NNN.md) |
 | Capacidad | [CAP-XXX](../../00_capabilities.md) |
-| Estado | Borrador / En refinamiento / Lista para desarrollo / En desarrollo / Implementada / Validada / Bloqueada / Descartada |
+| Estado | Borrador / En refinamiento / Lista para desarrollo / Entregada / En desarrollo / Implementada / Validada / Bloqueada / Descartada |
 | Prioridad | Alta / Media / Baja |
 | Responsable | <nombre o Pendiente> |
 | Estimación | <solo si fue dada por alguien; si no, Pendiente> |
@@ -210,3 +221,107 @@ Permisos, auditoría, volumen, rendimiento percibido, trazabilidad, retención d
 |---|---|---|---|---|---|---|
 ## Detalle de ítems transversales
 ```
+
+---
+
+## 10. `progress/`
+
+### `current.md`
+```markdown
+# Sesión actual (planificación)
+> Estado vivo. Se actualiza mientras se trabaja y se vacía al cerrar la sesión (su resumen pasa a `history.md`).
+> No es fuente de verdad: los requisitos viven solo en `docs/`.
+
+- **Fase:** A Capability / B Épicas / C Historias / D Preparación / Actualización / —
+- **Foco:** <CAP / EPIC / US en trabajo, o —>
+- **Inicio:** <AAAA-MM-DD>
+- **Fuente de la sesión:** <reunión, documento o conversación + fecha>
+
+## Confirmado en esta sesión
+| Tema | Lo confirmado (lo más cercano posible a lo dicho) | Quién | Destino |
+|---|---|---|---|
+| <...> | <...> | <nombre> | `por incorporar` / <archivo o ID> |
+
+## Preguntas abiertas
+| # | Pregunta (una línea) | Opciones propuestas | Bloquea |
+|---|---|---|---|
+
+## Artefactos tocados
+| Archivo | Acción | IDs |
+|---|---|---|
+
+## Próximo paso
+<lo primero que debe hacerse si la sesión se interrumpe>
+```
+
+### `history.md`
+```markdown
+# Bitácora de planificación (solo se añade al final)
+> Al cerrar cada sesión se añade su entrada. No se editan entradas anteriores.
+---
+## <AAAA-MM-DD> — <fase> — <foco>
+- **Resumen:** <3-5 viñetas con lo que se decidió o produjo>
+- **Artefactos:** <rutas creadas o modificadas>
+- **Estados cambiados:** <US-NNN: En refinamiento → Lista para desarrollo>
+- **Pendiente:** <OBS abiertas que quedaron>
+- AAAA-MM-DD · Revisión DoR · US-NNN · LISTA|CAMBIOS REQUERIDOS   <!-- líneas añadidas por el Revisor -->
+```
+
+---
+
+## 11. `entregas/ENT-NNN-EPIC-NNN-<slug>.md`  (paquete para el harness de implementación)
+
+````markdown
+# ENT-NNN — Entrega de EPIC-NNN <nombre>
+
+> Paquete autocontenido para el harness de implementación. Copia generada de `docs/`: no se edita a mano. La fuente de verdad es el repositorio de planificación.
+
+| Campo | Valor |
+|---|---|
+| Épica | EPIC-NNN — <nombre> |
+| Alcance | Épica completa / Selección: US-NNN, US-NNN |
+| Generada el | <AAAA-MM-DD> |
+| Estado | Generada / Retornada / Reemplazada |
+| Reemplaza a | <ENT-NNN o —> |
+| Revisión de la entrega | <fecha> · ENTREGA LISTA / CAMBIOS REQUERIDOS |
+
+## Instrucciones para el implementador
+1. Implementa las historias **en el orden indicado**, una a la vez.
+2. Cada historia es la especificación: su alcance, reglas y criterios (`CA-NN`) mandan. No amplíes el alcance ni cambies requisitos.
+3. Los criterios de aceptación son lo que debe demostrarse. Si una historia o un criterio es ambiguo, contradictorio o le falta un dato: no lo asumas en silencio; registra la duda, marca esa historia como bloqueada y continúa con otra que no dependa de ella.
+4. Si algo no se ejecutó o no se verificó, dilo; no afirmes que funciona.
+5. Este documento no incluye diseño técnico: las decisiones de implementación son tuyas y siguen la arquitectura del proyecto donde implementas.
+6. Al terminar (o al bloquearte) entrega el **informe de retorno** con el formato del final.
+
+## Orden de implementación
+| Orden | Historia | Título | Depende de | Motivo del lugar |
+|---|---|---|---|---|
+| 1 | US-NNN | <...> | — | <...> |
+
+### Prerrequisitos fuera de esta entrega
+<historias de otras épicas o integraciones que ya deben existir; o «Ninguno»>
+
+## Contexto compartido
+> Solo lo que las historias referencian. Texto completo, sin duplicados.
+### CAP-NNN — <nombre>
+### ROL-NNN — <nombre>
+### REG-NNN — <nombre>
+### INT-NNN — <nombre>
+
+## Historias
+### US-NNN — <título>
+<contenido fiel de la historia, sin *Definition of Ready* ni *Registro de cambios*; los enlaces a `docs/` se sustituyen por «ver Contexto compartido: REG-NNN»>
+
+## Cambios respecto a la entrega anterior
+<solo si reemplaza a otra: qué historias cambiaron y por qué>
+
+## Formato del informe de retorno
+```text
+RETORNO ENT-NNN
+US-NNN: Implementada | Bloqueada | Parcial
+  CA-01: Validado con test automatizado | Validado manualmente | No validado | No cumplido — <evidencia o motivo>
+  Dudas o ambigüedades: <...> (o «ninguna»)
+  Supuestos tomados: <...> (o «ninguno»)
+  Verificación ejecutada: <qué se ejecutó> | no ejecutada
+```
+````
