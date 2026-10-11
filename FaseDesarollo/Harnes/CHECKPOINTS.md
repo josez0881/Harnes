@@ -3,7 +3,7 @@
 > Se evalúa el destino, no el camino. El reviewer marca cada casilla; si queda alguna vacía, no hay cierre.
 
 ## C1 — Harness completo
-- [ ] Existen `CLAUDE.md`, `CHECKPOINTS.md`, el backlog, `.claude/agents/*`, `docs/{architecture,conventions,verification}.md` y `progress/{current,history}.md`.
+- [ ] Existen `CLAUDE.md`, `CHECKPOINTS.md`, el backlog, `.claude/agents/*`, `docs/{architecture,architecture-base,stack,conventions,verification}.md`, `.claude/skills/conventional-commit/SKILL.md` y `progress/{current,history}.md`.
 - [ ] Cada comando de verificación está clasificado en `docs/verification.md` (`AISLADO` / `NO AISLADO` / `NO VERIFICADO`); lo que se ejecutó fue `AISLADO` y con confirmación humana; lo demás consta como `no ejecutado` con su motivo (política bajo demanda o aislamiento).
 
 ## C2 — Estado coherente
@@ -12,7 +12,10 @@
 - [ ] `progress/current.md` está vacío o describe la sesión activa.
 
 ## C3 — El código respeta la arquitectura
-- [ ] Cumple `docs/architecture.md`.
+- [ ] Cumple las reglas de `docs/stack.md`, si las hay.
+- [ ] Cumple `docs/architecture.md` (estructura orientada al negocio, sin capas innecesarias, reglas de base de datos y seguridad aplicables).
+- [ ] Reutiliza lo que `docs/architecture-base.md` indica que ya existe; no duplica funcionalidad del proyecto base.
+- [ ] El informe del implementer documenta dominio, componentes reutilizados y elementos nuevos justificados.
 - [ ] Sin dependencias nuevas sin aprobación.
 - [ ] Sin restos de depuración según `docs/conventions.md`.
 
@@ -23,6 +26,7 @@
 
 ## C5 — Sesión cerrada
 - [ ] Repo limpio, entrada en `progress/history.md`, estado correcto en el backlog.
+- [ ] La ejecución con cambios terminó en un commit con el identificador de IA, solo con los archivos de esa ejecución, en formato Conventional Commits y sin push.
 
 ## C6 — Sin efectos colaterales ni costos no pedidos
 - [ ] Ningún comando ejecutado en la sesión tenía veredicto distinto de `AISLADO`.
