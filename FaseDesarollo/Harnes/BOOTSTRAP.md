@@ -49,7 +49,8 @@ Lo que debes completar son los marcadores `[POR ADAPTAR: ...]`: contienen lo que
 - **No edites código fuente ni tests del proyecto** durante el bootstrap. Solo archivos del harness.
 - **Preguntas al humano:** de una línea, con opciones para elegir, máximo 3 por ronda. Si dispones de una herramienta de preguntas interactivas, úsala.
 - **Idioma** de los datos que escribas: el que el humano usa contigo, salvo que el repo documente otro.
-- **Tamaño:** `CLAUDE.md` corto; el detalle va a `docs/`.
+- **Tamaño:** `CLAUDE.md` corto; el detalle va a `docs/`. Esto no autoriza a recortar la sección `## REGLAS GLOBALES`.
+- **Reglas globales del humano (`CLAUDE.md`, sección `## REGLAS GLOBALES`, Rules #0 a #3).** Son preferencias personales del humano y se transcriben intactas, igual que los documentos de arriba: no las edites, parafrasees, resumas, reordenes, muevas ni borres, ni siquiera para acortar `CLAUDE.md`, y ningún paso de este bootstrap las sustituye. Si chocan con una regla de este bootstrap, no las cambies: regístralo como brecha y pregunta al humano.
 
 ---
 
@@ -136,7 +137,7 @@ Reglas: usa rutas y comandos **reales** del proyecto. Cada regla en `docs/` llev
 
 | Archivo | Qué completar |
 |---|---|
-| `CLAUDE.md` | *Rutas protegidas* (patrones reales de código y tests); fila de documentación del proyecto en el mapa. El estado se cambia al final (§5). |
+| `CLAUDE.md` | *Rutas protegidas* (patrones reales de código y tests); fila de documentación del proyecto en el mapa. El estado se cambia al final (§5). Nada más: la sección `## REGLAS GLOBALES` no se toca. |
 | `.claude/agents/leader.md` | Terminología del escalado de esfuerzo (módulos, paquetes, servicios…). |
 | `docs/architecture-base.md` | Se completa en la Fase 1 siguiendo `docs/DescribeProject.md`. Todos los marcadores, con evidencia. |
 | `docs/DescribeProject.md`, `docs/architecture.md` | **No se tocan** (documentos del humano, intactos). |
@@ -173,6 +174,7 @@ Comprueba también que el `name` de cada agente coincide con el nombre de su arc
 
 - [ ] `docs/DescribeProject.md`, `docs/architecture.md` y la skill de commits están intactos (SHA-256 coincidente o discrepancia informada).
 - [ ] `docs/stack.md` existe y no contiene reglas escritas por ti.
+- [ ] La sección `## REGLAS GLOBALES` de `CLAUDE.md` sigue idéntica a la inicial (misma redacción y orden, una sola vez, fuera del bloque `harness:start/end` en caso de fusión).
 - [ ] Se hizo el commit final con el identificador, sin push.
 - [ ] `docs/architecture-base.md` está completo con origen por dato, e indica si el proyecto base se levantó.
 - [ ] No queda ningún marcador `[POR ADAPTAR:` en el repo (este archivo se excluye).
@@ -190,8 +192,9 @@ Comprueba también que el `name` de cada agente coincide con el nombre de su arc
 
 **Fusión (si existe `_harness_base/`).** Esa carpeta es el harness base y la raíz ya tiene archivos propios.
 1. No sobrescribas nada. **`docs/architecture.md`, `docs/DescribeProject.md`, `docs/architecture-base.md`, `docs/stack.md` y la skill de commits del humano, si ya existen en el repo, prevalecen sobre los del base**: no los reemplaces. Por cada otro archivo del base que ya exista en la raíz, propón al humano una fusión: conserva el contenido del proyecto y añade el del harness (en `CLAUDE.md`, entre `<!-- harness:start -->` y `<!-- harness:end -->`). Espera su aprobación.
+   - **`## REGLAS GLOBALES` en la fusión:** van una sola vez, completas y **fuera** del bloque `harness:start/end`, para que una actualización del bloque no las toque. Si el `CLAUDE.md` del repo ya las contiene, conserva esa versión y no añadas la del base; si difieren, muestra la diferencia al humano y no decidas tú.
 2. Copia los archivos que no existan.
 3. Si los archivos existentes vienen de una versión anterior de este harness (sin Gate de aislamiento ni política bajo demanda), trátalo como actualización: **conserva los datos del proyecto ya descubiertos** y reemplaza las reglas genéricas por las del base. No ejecutes ningún comando de verificación durante la fusión.
 4. Continúa con las fases normales. Al final, pregunta al humano si borras `_harness_base/`; no la borres sin su aprobación.
 
-**Actualización (si `CLAUDE.md` ya dice `ADAPTADO`).** Compara lo documentado (sobre todo `docs/architecture-base.md`) con el estado actual del repo y con la versión del base si el humano la aporta; reporta diferencias y propón un diff. No regeneres ni sobrescribas, y no toques `docs/DescribeProject.md`, `docs/architecture.md`, `docs/stack.md` ni la skill de commits.
+**Actualización (si `CLAUDE.md` ya dice `ADAPTADO`).** Compara lo documentado (sobre todo `docs/architecture-base.md`) con el estado actual del repo y con la versión del base si el humano la aporta; reporta diferencias y propón un diff. No regeneres ni sobrescribas, y no toques `docs/DescribeProject.md`, `docs/architecture.md`, `docs/stack.md`, la skill de commits ni la sección `## REGLAS GLOBALES` de `CLAUDE.md`.

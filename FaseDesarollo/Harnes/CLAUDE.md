@@ -51,7 +51,7 @@ Sí puede editar: `docs/` (salvo `docs/architecture.md`, `docs/DescribeProject.m
 5. Ante un fallo inesperado de herramienta, sin workaround: documentar el bloqueo en `progress/current.md` y parar.
 6. No afirmar que algo funciona si no se ejecutó: decir «no verificado».
 7. Todo lo nuevo se implementa según `docs/architecture.md` y `docs/stack.md`. Antes de crear infraestructura (autenticación, usuarios, roles, permisos, auditoría, logging, errores, acceso a BD, componentes visuales, configuración, utilidades), comprobar en `docs/architecture-base.md` si ya existe.
-8. `docs/architecture.md`, `docs/DescribeProject.md`, `docs/stack.md` y `.claude/skills/conventional-commit/SKILL.md` son documentos del humano: no se editan, resumen ni reescriben salvo petición expresa.
+8. `docs/architecture.md`, `docs/DescribeProject.md`, `docs/stack.md`, `.claude/skills/conventional-commit/SKILL.md` y la sección `## REGLAS GLOBALES` de este archivo son del humano: no se editan, resumen, mueven ni reescriben salvo petición expresa.
 9. Al terminar cada ejecución en la que se cambiaron archivos, el líder hace un commit con el identificador de IA (sección «Commit al terminar cada ejecución»).
 
 ## Cómo se combinan los documentos de arquitectura
