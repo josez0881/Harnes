@@ -39,7 +39,7 @@ Plantillas de cada archivo: `./.claude/templates/plantillas.md`. Léelas antes d
 
 ## 3. Entrevista (Fase A y huecos en cualquier fase)
 
-- Aplica Rule #0 de `AGENTS.md`: preguntas de una línea, con opciones para elegir, **máximo 3 por ronda**.
+- Aplica Rule #0 de `CLAUDE.md`: preguntas de una línea, con opciones para elegir, **máximo 3 por ronda**.
 - No pases de fase mientras haya dudas bloqueantes. Antes de cerrar una capability, verifica que cubriste lo que aplique de: actores y permisos, objetivo, alcance incluido/excluido, reglas de negocio, datos, integraciones, flujos alternos y errores, volúmenes o frecuencia, datos existentes a migrar, criterio de éxito.
 - Lo que el usuario no sabe se registra como `OBS` (decisión pendiente) con quién debe decidir; no lo rellenes.
 
