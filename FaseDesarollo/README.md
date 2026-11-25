@@ -24,16 +24,17 @@ Si ya hay un harness generado, entra en **modo actualización**: compara y propo
 Tú: «implementa X»
 └── leader (rol fijado por CLAUDE.md; no edita código)
     ├── Arranque: lee CLAUDE.md, backlog y progress/current.md. No ejecuta pruebas.
+    ├── Gate de rama: en una rama de integración crea una rama nueva; en otra, pregunta
     ├── Descompone en una o varias unidades (de a una)
-    ├── explorers en paralelo, solo si el área es desconocida → progress/explore_<tema>.md
-    ├── implementer: código + pruebas escritas, sin ejecutarlas → progress/impl_<id>.md
-    ├── reviewer: revisión estática contra docs/ y CHECKPOINTS → progress/review_<id>.md
-    │      ├── APPROVED → el leader marca done y el campo verificacion
+    ├── explorers, solo si falta evidencia → progress/explore_<tema>.md
+    ├── implementer: plan en current.md → código + pruebas → verificación dirigida → progress/impl_<id>.md
+    ├── reviewer: verificación dirigida (+ suite completa si hay migraciones) contra docs/ y CHECKPOINTS → progress/review_<id>.md
+    │      ├── APPROVED → el leader marca done (o blocked si falta una dependencia) y el campo verificacion
     │      └── CHANGES_REQUESTED → vuelve al implementer
-    └── Cierre: resumen de current.md a history.md, current.md vaciado, repo limpio
+    └── Cierre: resumen de current.md a history.md, current.md vaciado, repo limpio, commit [IA change]
 
-Cuando TÚ lo pides: «corre las pruebas de lo implementado»
-└── gate → alcance dirigido → confirmación si toca estado → ejecución → Registro de ejecuciones
+Cuando TÚ lo pides: «suite completa»
+└── gate → aviso del tiempo observado → confirmación si toca estado → ejecución → Registro de ejecuciones
 ```
 
 **Reglas del ciclo**
@@ -43,11 +44,17 @@ Cuando TÚ lo pides: «corre las pruebas de lo implementado»
 - `done` exige un `review_<id>.md` con `APPROVED`.
 - El campo `verificacion` de cada unidad refleja lo realmente ejecutado: `no_ejecutada`, `dirigida_ok`, `completa_ok` o `fallida`.
 
-**Verificación bajo demanda**
-- Cuentan como petición frases como «corre las pruebas», «valida lo implementado» o «ejecuta los tests de X». «Implementa» y «cierra la unidad» no cuentan.
-- Por defecto el alcance es dirigido. La suite completa solo si dices «suite completa» o «todas las pruebas».
+**Verificación (v4)**
+- Tras implementar, el implementer y el reviewer ejecutan la verificación **dirigida** (solo lo que cubre la aceptación), únicamente con comandos `AISLADO`.
+- La suite completa solo si dices «suite completa» o «todas las pruebas», o si la unidad toca migraciones o fixtures de esquema. «Implementa» y «cierra la unidad» no cuentan como petición.
 - Si no puede acotar un subconjunto, te pregunta en vez de caer en la completa.
+- Los fallos preexistentes se listan y pasan a una unidad propia; no se corrigen dentro de otra.
 - Antes de un nivel lento te indica el tiempo observado, y cada ejecución queda registrada con fecha, alcance y duración.
+
+**Ramas y versiones (v4)**
+- El agente nunca escribe ni hace commit en las ramas de integración (p. ej. `develop`/`main`); un hook (`.claude/hooks/proteger-ramas.py`) bloquea Edit/Write en ellas.
+- No hace `merge` ni `rebase` sobre ellas: deja la rama lista para el MR/PR.
+- No crea ni mueve tags: propone la versión y te da los comandos.
 
 ## Parte 3: cómo encaja con una entrega del harness de planificación
 
@@ -60,12 +67,13 @@ Cuando TÚ lo pides: «corre las pruebas de lo implementado»
 - Responder las preguntas bloqueantes de la fase 2.
 - Elegir qué hacer cuando el gate no puede probar el aislamiento.
 - Revisar `git diff` y hacer el commit.
-- Pedir explícitamente las pruebas, y si son dirigidas o completas.
+- Pedir la suite completa cuando la quieras (la dirigida es automática).
+- Abrir el MR/PR y crear los tags.
 - Confirmar el primer comando que toque estado.
 
 ## Críticas
 
 1. **El bucle `CHANGES_REQUESTED` no está definido.** Lo verifiqué leyendo el archivo: el reviewer devuelve ese veredicto, pero no hay un máximo de rondas ni dice qué hace el leader después. [Inferencia] Sin ese límite, el comportamiento queda a criterio del modelo y puede iterar de más o parar sin avisar. Conviene añadir un máximo de 2 rondas y luego `blocked`.
-2. **El enlace con la entrega es informal.** El BOOTSTRAP no dice que `US-NNN` sea el id de la unidad ni que los `CA-NN` sean su `acceptance[]`, ni genera el informe de retorno. Eso depende de que el leader lea las instrucciones de la `ENT`. [Inferencia] Es el punto con más riesgo de improvisación; basta una línea en el BOOTSTRAP para cerrarlo.
-3. **Sin hooks, todo es instrucción.** Como las barreras no se hacen cumplir por mecanismo, la confirmación humana antes del primer comando que toque estado es la protección real.
-4. **`done` sin ejecutar pruebas es posible.** El campo `verificacion` lo hace visible, pero no lo evita. [Inferencia] Si pasan varias unidades sin ejecución, los fallos aparecerán juntos. Pide al menos una ejecución dirigida antes de integrar cada unidad.
+2. **El enlace con la entrega es parcial.** Desde la v4 el backlog tiene el campo `historia` (la `US-NNN`) y su `_historia` indica que los `CA-NN` van en `acceptance[]`, pero el harness sigue sin generar el informe de retorno a planificación. [Inferencia] Es el punto con más riesgo de improvisación.
+3. **Solo un hook.** Desde la v4 el hook de ramas bloquea Edit/Write en las ramas de integración, pero no cubre escrituras ni commits hechos por Bash, y el resto de barreras (aislamiento, verificación) siguen siendo instrucciones. La confirmación humana antes del primer comando que toque estado es la protección real.
+4. ~~`done` sin ejecutar pruebas es posible.~~ Resuelto en la v4: la verificación dirigida es obligatoria tras implementar y `done` exige verificación en verde.
