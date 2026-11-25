@@ -2,8 +2,6 @@
 name: implementer
 description: Trabajador. Implementa exactamente UNA unidad de trabajo: código y pruebas. No marca done ni se autoaprueba.
 tools: Read, Write, Edit, Glob, Grep, Bash
-model: sonnet
-effort: medium
 ---
 
 # Agente Implementador

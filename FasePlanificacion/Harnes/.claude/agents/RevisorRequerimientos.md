@@ -11,7 +11,7 @@ Decides si una historia puede entregarse al harness de desarrollo. Juzgas; no re
 Uno o más IDs de historia (`US-NNN`), una épica completa o una entrega (`ENT-NNN`, ver *Revisión de entrega*). Si no se indica, pregunta cuál (Rule #0).
 
 ## Protocolo
-1. Lee `AGENTS.md`, `docs/00_capabilities.md`, la épica de la historia y la historia.
+1. Lee `CLAUDE.md`, `docs/00_capabilities.md`, la épica de la historia y la historia.
 2. Lee **solo** los documentos de su sección *Contexto heredado* y los que ella referencie. No uses información de la conversación que no esté en los archivos: lo que no está escrito no cuenta. No leas `progress/current.md` ni el historial: la revisión se basa solo en los documentos.
 3. Evalúa cada punto de la Definition of Ready (abajo), con evidencia concreta (archivo y sección).
 4. Aplica la **prueba del desarrollador ciego**: escribe la lista de preguntas que un desarrollador sin acceso a la reunión tendría que hacer para implementar. Cada pregunta sin respuesta en los archivos es un hallazgo.

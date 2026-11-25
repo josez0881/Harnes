@@ -51,7 +51,8 @@ Lo que debes completar son los marcadores `[POR ADAPTAR: ...]`: contienen lo que
 - **No edites código fuente ni tests del proyecto** durante el bootstrap. Solo archivos del harness.
 - **Preguntas al humano:** de una línea, con opciones para elegir, máximo 3 por ronda. Si dispones de una herramienta de preguntas interactivas, úsala.
 - **Idioma** de los datos que escribas: el que el humano usa contigo, salvo que el repo documente otro.
-- **Tamaño:** `CLAUDE.md` corto; el detalle va a `docs/`.
+- **Tamaño:** `CLAUDE.md` corto; el detalle va a `docs/`. Esto no autoriza a recortar la sección `## REGLAS GLOBALES`.
+- **Reglas globales del humano (`CLAUDE.md`, sección `## REGLAS GLOBALES`, Rules #0 a #3).** Son preferencias personales del humano y se transcriben intactas, igual que los documentos de arriba: no las edites, parafrasees, resumas, reordenes, muevas ni borres, ni siquiera para acortar `CLAUDE.md`, y ningún paso de este bootstrap las sustituye. Si chocan con una regla de este bootstrap, no las cambies: regístralo como brecha y pregunta al humano.
 
 ---
 
@@ -179,6 +180,7 @@ Comprueba también que el `name` de cada agente coincide con el nombre de su arc
 
 - [ ] `docs/DescribeProject.md`, `docs/architecture.md` y la skill de commits están intactos (SHA-256 coincidente o discrepancia informada).
 - [ ] `docs/stack.md` existe y no contiene reglas escritas por ti.
+- [ ] La sección `## REGLAS GLOBALES` de `CLAUDE.md` sigue idéntica a la inicial (misma redacción y orden, una sola vez, fuera del bloque `harness:start/end` en caso de fusión).
 - [ ] Se hizo el commit final con el identificador, sin push.
 - [ ] `docs/architecture-base.md` está completo con origen por dato, e indica si el proyecto base se levantó.
 - [ ] No queda ningún marcador `[POR ADAPTAR:` en el repo (este archivo se excluye).
@@ -202,4 +204,4 @@ Comprueba también que el `name` de cada agente coincide con el nombre de su arc
 3. Si los archivos existentes vienen de una versión anterior de este harness (sin Gate de aislamiento, sin Gate de rama o con la política «verificación bajo demanda»), trátalo como actualización: **conserva los datos del proyecto ya descubiertos y las decisiones del humano registradas** (fechadas o marcadas `[decisión del humano]`) y reemplaza las reglas genéricas por las del base. Si una decisión del humano contradice una regla genérica nueva, no elijas tú: pregúntale. No ejecutes ningún comando de verificación durante la fusión.
 4. Continúa con las fases normales. Al final, pregunta al humano si borras `_harness_base/`; no la borres sin su aprobación.
 
-**Actualización (si `CLAUDE.md` ya dice `ADAPTADO`).** Compara lo documentado (sobre todo `docs/architecture-base.md`) con el estado actual del repo y con la versión del base si el humano la aporta; reporta diferencias y propón un diff. No regeneres ni sobrescribas, y no toques `docs/DescribeProject.md`, `docs/architecture.md`, `docs/stack.md` ni la skill de commits.
+**Actualización (si `CLAUDE.md` ya dice `ADAPTADO`).** Compara lo documentado (sobre todo `docs/architecture-base.md`) con el estado actual del repo y con la versión del base si el humano la aporta; reporta diferencias y propón un diff. No regeneres ni sobrescribas, y no toques `docs/DescribeProject.md`, `docs/architecture.md`, `docs/stack.md`, la skill de commits ni la sección `## REGLAS GLOBALES` de `CLAUDE.md`.

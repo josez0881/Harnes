@@ -36,17 +36,17 @@ Es la **fase de planificación y especificación de requerimientos**. Su salida 
 ### Quién hace qué
 | Rol | Archivo de instrucciones | Qué hace | Qué no hace |
 |---|---|---|---|
-| Documentador | `./.codex/agents/Documentador.md` | Entrevista, estructura y mantiene los requerimientos; arma las entregas y registra los retornos | No marca una historia como `Lista para desarrollo`; no diseña la solución técnica |
-| Revisor de requerimientos | `./.codex/agents/RevisorRequerimientos.md` | Valida la Definition of Ready y las entregas; es el único que concede `Lista para desarrollo` | No redacta ni corrige requisitos |
-| Gestor de commits | `./.codex/agents/GestorCommits.md` | Commits con Conventional Commits | No hace push ni amend sin pedirlo |
+| Documentador | `./.claude/agents/Documentador.md` | Entrevista, estructura y mantiene los requerimientos; arma las entregas y registra los retornos | No marca una historia como `Lista para desarrollo`; no diseña la solución técnica |
+| Revisor de requerimientos | `./.claude/agents/RevisorRequerimientos.md` | Valida la Definition of Ready y las entregas; es el único que concede `Lista para desarrollo` | No redacta ni corrige requisitos |
+| Gestor de commits | `./.claude/agents/GestorCommits.md` | Commits con Conventional Commits | No hace push ni amend sin pedirlo |
 
-Plantillas de todos los artefactos: `./.codex/templates/plantillas.md`.
+Plantillas de todos los artefactos: `./.claude/templates/plantillas.md`.
 
 ### Reglas
-- Siempre utiliza las pautas estipuladas en `./.codex/agents/Documentador.md`.
-- Al momento que te solicite commit lee esto `./.codex/agents/GestorCommits.md`.
-- Cuando te pida validar una historia o una entrega, lee `./.codex/agents/RevisorRequerimientos.md` y hazlo en una sesión distinta a la que la redactó.
-- **Estado en disco:** al empezar una sesión lee `progress/current.md`; manténlo actualizado mientras trabajas (no al final); al cerrar, pasa su resumen a `progress/history.md` y vacía `current.md`. Plantillas en `./.codex/templates/plantillas.md` §10. `current.md` es memoria de trabajo: los requisitos viven solo en `docs/`.
+- Siempre utiliza las pautas estipuladas en `./.claude/agents/Documentador.md`.
+- Al momento que te solicite commit lee esto `./.claude/agents/GestorCommits.md`.
+- Cuando te pida validar una historia o una entrega, lee `./.claude/agents/RevisorRequerimientos.md` y hazlo en una sesión distinta a la que la redactó.
+- **Estado en disco:** al empezar una sesión lee `progress/current.md`; manténlo actualizado mientras trabajas (no al final); al cerrar, pasa su resumen a `progress/history.md` y vacía `current.md`. Plantillas en `./.claude/templates/plantillas.md` §10. `current.md` es memoria de trabajo: los requisitos viven solo en `docs/`.
 - **Alcance de Rule #2 en este proyecto:** estructurar y reformular información de reuniones y notas es la tarea pedida, por lo que reformular está permitido. Todo requisito debe llevar su fuente; lo que no sea literal ni confirmado se etiqueta `[Inferencia]` o `Pendiente`. Si el usuario no está de acuerdo con esta excepción, se elimina esta regla y Documentador pasa a citar textualmente.
 
 ### Flujo
