@@ -25,3 +25,14 @@
 
 ## Mensajes de commit
 [POR ADAPTAR: solo si hay convención observable]
+
+## Decisiones del humano
+> Aquí se añaden, durante el trabajo, las convenciones que el humano decide (formatos de presentación, patrones de interfaz, reglas de datos de prueba…). Cada una lleva:
+> - un título con la fecha: `## <tema> (decisión del humano, AAAA-MM-DD)`;
+> - la regla concreta, con la ubicación del código o la fuente que la respalda;
+> - una línea **«Al revisar, … es un hallazgo»**, para que el reviewer pueda comprobarla;
+> - si nació de un incidente, la unidad de origen.
+>
+> El bootstrap no rellena esta sección.
+
+_Ninguna todavía._
